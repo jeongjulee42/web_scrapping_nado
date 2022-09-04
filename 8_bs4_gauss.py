@@ -1,0 +1,35 @@
+# 가우스전자 웹툰 긁어오기
+import requests
+from bs4 import BeautifulSoup
+
+url = "https://comic.naver.com/webtoon/list?titleId=675554"
+res = requests.get(url)
+res.raise_for_status()
+
+soup = BeautifulSoup(res.text, "lxml")
+# cartoons = soup.find_all("td", attrs={"class": "title"})
+# title = cartoons[1].a.get_text()
+# print(title)
+
+# 제목 + 링크 가져오기
+# link = cartoons[0].a["href"]
+# print(title)
+# print("https://comic.naver.com" + link)
+# # cmd + 클릭 하면 웹페이지 열림
+
+# for cartoon in cartoons:
+#     title = cartoon.a.get_text()
+#     link = "https://comic.naver.com" + cartoon.a["href"]
+#     print(title, link)
+
+# 평점 정보 빼오고 평균 평점 계산
+total_rates = 0
+cartoons = soup.find_all("div", attrs={"class": "rating_type"})
+
+for cartoon in cartoons:
+    rate = cartoon.find("strong").get_text()
+    print(rate)
+    total_rates += float(rate)
+print(total_rates / len(cartoons))
+
+# 인터프리터에서도 할 수 있다.

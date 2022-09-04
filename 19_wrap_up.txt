@@ -1,0 +1,7 @@
+웹스크래핑
+xpath - element의 경로
+
+requests - 동적웹페이지 x, but 빠르다. 
+selenium - 느리다, 동적 웹페이지 o 
+둘은 html을 가져오는 동작의 차이.
+# 요약본 먼저 다시 보고 정리
